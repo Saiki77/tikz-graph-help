@@ -7,9 +7,9 @@ A plugin for Obsidian that lets you create tikz graphs using a simple to use men
 This plugin aims to simplify the process of creating and edditing tikz diagrams. 
 It includes a menu to create graphs using simplified selectors and input fields. 
 
-<img width=600 align="center" src="./img/Screenshot1.png">
-<img width=600 align="center" src="./img/Screenshot2.png">
-<img width=600 align="center" src="./img/Screenshot3.png">
+<img width=800 align="center" src="./img/Screenshot1.png">
+<img width=800 align="center" src="./img/Screenshot2.png">
+<img width=800 align="center" src="./img/Screenshot3.png">
 ### Upcoming 
 
 - Support for 3D Plots
