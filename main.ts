@@ -3,8 +3,7 @@ import { Plugin, Modal, Setting } from 'obsidian';
 
 
 
-// type strings 
-// doc strings 
+
 
 interface FunctionParameters {
     expression: string;
@@ -62,7 +61,7 @@ class MathHelper {
     // Calculate derivative of a function at a point
     static calculateDerivative(expression: string, x: number): number {
         const h = 0.0001; // Small increment for numerical derivative
-        // Use Function constructor to create a function from the expression
+   
         const f = new Function('x', `return ${expression.replace(/\^/g, '**')}`);
         return (f(x + h) - f(x)) / h;
     }
@@ -71,10 +70,10 @@ class MathHelper {
     static findExtrema(expression: string, domain: string): { x: number, y: number, type: string }[] {
         const [min, max] = this.parseDomain(domain);
         const h = 0.0001;
-        const step = (max - min) / 100; // Divide domain into 100 points
+        const step = (max - min) / 100; 
         const extrema: { x: number, y: number, type: string }[] = [];
         
-        // Convert expression to JavaScript function
+      
         const f = new Function('x', `return ${expression.replace(/\^/g, '**')}`);
         
         // Check each point for sign changes in derivative
@@ -101,14 +100,14 @@ class MathHelper {
     }
 
     // Calculate tangent line equation at a point
-    // Update calculateTangentLine to handle errors
+
     static calculateTangentLine(expression: string, x0: number): string {
         try {
             const f = new Function('x', `return ${expression.replace(/\^/g, '**')}`);
             const y0 = f(x0);
             const slope = this.calculateDerivative(expression, x0);
             
-            // y - y0 = m(x - x0)  =>  y = mx - mx0 + y0
+       
             return `${slope}*x + ${y0 - slope * x0}`;
         } catch (error) {
             console.error('Error calculating tangent line:', error);
@@ -118,7 +117,7 @@ class MathHelper {
 }
 
 interface DynamicTikzSetting extends TikzSetting {
-    values?: string[]; // Array to store multiple entries
+    values?: string[]; 
 }
 
 
@@ -327,7 +326,7 @@ const TIKZ_SETTINGS: TikzSetting[] = [
         type: 'toggle',
         defaultValue: true,
         insertText: (value) => value ? 
-           '\n]' : ' \n  axis lines = middle,\n]' //change 
+           '\n]' : ' \n  axis lines = middle,\n]' 
     },
 
     {
@@ -355,7 +354,7 @@ const TIKZ_SETTINGS: TikzSetting[] = [
                     code += `\n\\addlegendentry{\\(${func.expression}\\)}`;
                 }
                 if (func.fill) {
-                    //code += `\n\\addplot[fill=${func.color}!20] fill between[of=current and previous];`;
+                  
                 }
                 console.log('tangent');
                 console.log(func.tangent);
@@ -504,7 +503,7 @@ class TikzModal extends Modal {
             this.createAxisRangeInputs(rangeContainer, 'x');
             return;
         }
-        // Skip xmax as it's handled with xmin
+      
         if (setting.id === 'xmax') return;
 
         // Group y-axis range inputs
@@ -513,7 +512,7 @@ class TikzModal extends Modal {
             this.createAxisRangeInputs(rangeContainer, 'y');
             return;
         }
-        // Skip ymax as it's handled with ymin
+      
         if (setting.id === 'ymax') return;
 
         const settingUI = new Setting(container)
@@ -741,7 +740,7 @@ class TikzModal extends Modal {
                     });
             });
 
-        // Create a single setting for both buttons
+     
         const buttonSetting = new Setting(container);
 
         // Render button
@@ -759,7 +758,7 @@ class TikzModal extends Modal {
             .setButtonText('Update')
             .onClick(() => {
                 this.updateTikzCode();
-                //this.createFunctionControl.call(updateFunctionValues());
+             
             }));
 
         // Result area
@@ -804,14 +803,14 @@ class TikzModal extends Modal {
         functionsContainer.style.marginLeft = '20px';
         functionsContainer.style.marginTop = '10px';
     
-        // Create a Map to store the states for each row
+       
         const rowStates = new Map();
     
         const addFunctionRow = () => {
             const rowContainer = functionsContainer.createDiv('function-row');
             const rowId = `row-${Date.now()}`; // Unique ID for this row
             
-            // Initialize state for this row
+         
             rowStates.set(rowId, {
                 showLegend: false,
                 fill: false,
@@ -874,7 +873,7 @@ class TikzModal extends Modal {
             styleContainer.style.width = '100%';
             styleContainer.style.marginBottom = '10px';
     
-                        // Color dropdown
+            // Color dropdown
             const colorContainer = styleContainer.createDiv();
             colorContainer.style.flex = '1';
             const colorInput = new Setting(colorContainer)
@@ -950,7 +949,7 @@ class TikzModal extends Modal {
                 { name: 'Extrema', key: 'extrema' }
             ];
         
-            //let tangentPointInput: HTMLElement | null = null;
+        
         
             toggles.forEach(({ name, key }) => {
                 const toggleWrapper = toggleContainer.createDiv();
@@ -1059,23 +1058,16 @@ class TikzModal extends Modal {
             this.settings.setValue(setting.id, functions);
         };
     
-        // Add initial row
-        //addFunctionRow();
-    
-        // Add button
+
   
     }
     }
 
-// ########################################################
+
 export default class SimpleTikzPlugin extends Plugin {
    
 
     async onload() {
-
-       // await this.loadSettings();
-		
-
 
         // Add ribbon icon
         this.addRibbonIcon('square-function', 'TikZ Renderer', (evt: MouseEvent) => {
@@ -1094,13 +1086,11 @@ export default class SimpleTikzPlugin extends Plugin {
 
     async loadTikZJax() {
         try {
-           // const response = await fetch('https://tikzjax.com/v1/tikzjax.js');
-            //if (!response.ok) throw new Error('Failed to fetch TikZJax');
-            //const tikzjaxJs = await response.text();
+           
             const s = document.createElement("script");
             s.id = "tikzjax";
             s.type = "text/javascript";
-            //s.innerText = tikzjaxJs;
+         
             document.body.appendChild(s);
         } catch (error) {
             console.error('Failed to load TikZJax:', error);
