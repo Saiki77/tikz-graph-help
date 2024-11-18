@@ -1,0 +1,11 @@
+{
+	"id": "tikz-graph_helper",
+	"name": "Tikz-Graph Helper",
+	"version": "1.0.0",
+	"minAppVersion": "0.15.0",
+	"description": "Helps to generate tikz graphs and code.",
+	"author": "Justus",
+	"authorUrl": "https://github.com/Saiki77",
+	"fundingUrl": "https://obsidian.md/pricing",
+	"isDesktopOnly": true
+}
